@@ -9,5 +9,5 @@ public class SavantApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SavantApplication.class, args);
 	}
-
+	
 }
