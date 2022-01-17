@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/index")
-    public String displayHomePage(Model model)  {
+    public String indexPage(Model model) {
 
-        model.addAttribute("title", "Welcome Designers!");
+        String welcome = "Welcome to the Savant Layout Tool Designers!";
+        String title = "Savant Layout Tool";
+
+        model.addAttribute("title", title);
+        model.addAttribute("welcome", welcome);
 
         return "index";
     }
