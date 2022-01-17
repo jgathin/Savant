@@ -1,18 +1,18 @@
 package com.test.Savant.models;
 
-public class Controller extends Device{
+public class SavControl extends Device{
 
     //properties of controller
     private ControllableIO controllableIO;
 
     //constructors
-    public Controller (String model, ControllableIO controllableIO) {
+    public SavControl(String model, ControllableIO controllableIO) {
 
         super(model);
         this.controllableIO = controllableIO;
     }
 
-    public Controller (String model) {
+    public SavControl(String model) {
 
         super(model);
     }
