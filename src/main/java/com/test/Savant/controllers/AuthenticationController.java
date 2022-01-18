@@ -46,20 +46,20 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping("/register")
+    @GetMapping("/reg")
     public String displayRegisterForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
-        return "register";
+        return "reg";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/reg")
     public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
                                           Errors errors, Model model){
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Register");
-            return "register";
+            return "reg";
         }
 
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
@@ -68,7 +68,7 @@ public class AuthenticationController {
             errors.rejectValue("username", "username.alreadyexists", "a user with that username already " +
                     "exists");
             model.addAttribute("title", "Register");
-            return "register";
+            return "reg";
         }
 
         String password = registerFormDTO.getPassword();
@@ -76,7 +76,7 @@ public class AuthenticationController {
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match!");
             model.addAttribute("title", "Register");
-            return "register";
+            return "reg";
         }
 
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(),

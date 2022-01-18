@@ -21,8 +21,8 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     @Autowired
     AuthenticationController authenticationController;
 
-    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/css",
-            "/styles.css", "/index");
+    private static final List<String> whitelist = Arrays.asList("/login", "/reg", "/logout", "/css",
+            "/styles.css");
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot: whitelist) {

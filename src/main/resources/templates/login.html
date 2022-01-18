@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container text-center">
+
+<header>
+    <div>
+        <h1><img src="https://www.adamreed.net/wp-content/uploads/2020/09/MagnoliaBB_Logo.jpg" /></h1>
+        <h1><img src="https://www.savant.com/sites/all/themes/savant_main/assets/img/Savant-Logo.svg" width="400"/></h1>
+        <h2 th:text="${title}" class="py-2"></h2>
+    </div>
+</header>
+
+<form method="post" class="p-4 p-md-5">
+    <div class="form-floating mb-3">
+        <label class="sr-only" for="username">Username</label>
+        <input class="form-control-lg" id="username"th:field="${loginFormDTO.username}" placeholder="Username" required autofocus>
+    </div>
+    <p class="error" th:errors="${loginFormDTO.username}"></p>
+    </br>
+    <div class="form-floating mb-3">
+        <label class="sr-only" th:for="password">Password</label>
+        <input class="form-control-lg" id="password" th:field="${loginFormDTO.password}" type="password" placeholder="Password" required>
+    </div>
+    <p class="error" th:errors="${loginFormDTO.password}"></p>
+
+    <input type="submit" class="btn btn-primary" value="Log In">
+    <p class="mt-5 mb-3">Don't have an account? <a href="/reg">Register</a> </p>
+</form>
 
 </body>
 </html>
