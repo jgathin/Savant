@@ -18,4 +18,11 @@ public class HomeController {
 
         return "index";
     }
+
+    @GetMapping("/admin")
+    public String adminHomePage(Model model) {
+        model.addAttribute("title", "Admin Home Page");
+
+        return "admin";
+    }
 }

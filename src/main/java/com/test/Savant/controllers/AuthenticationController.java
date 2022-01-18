@@ -122,6 +122,11 @@ public class AuthenticationController {
 
 
             setUserInSession(request.getSession(), theUser);
+
+            if (theUser.getUsername().equals("jgathin")) {
+                return "redirect:/admin";
+            }
+
             return "redirect:/index";
 
 
