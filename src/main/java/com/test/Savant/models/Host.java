@@ -1,5 +1,8 @@
 package com.test.Savant.models;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Host extends Device {
 
     //properties of host
@@ -12,9 +15,8 @@ public class Host extends Device {
     private SignalIO signalIO;
 
     //constructors
-    public Host(String model, int videoZones, int totalZones, int supportedLights, int supportedSensors, boolean embedded, ControllableIO controlIO, SignalIO signalIO) {
+    public Host(int videoZones, int totalZones, int supportedLights, int supportedSensors, boolean embedded, ControllableIO controlIO, SignalIO signalIO) {
 
-        super(model);
         this.videoZones = videoZones;
         this.totalZones = totalZones;
         this.supportedLights = supportedLights;
@@ -24,10 +26,7 @@ public class Host extends Device {
         this.signalIO = signalIO;
     }
 
-    public Host(String model) {
-
-        super(model);
-    }
+    public Host() {};
 
     //getters & setters
     public void setVideoZones (int videoZones) {this.videoZones = videoZones;}

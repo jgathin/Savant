@@ -1,6 +1,6 @@
 package com.test.Savant.models;
 
-public class ControllableIO extends Device {
+public class ControllableIO {
 
     //properties of Controllable Ins & Outs
     private int infraredOutputs;
@@ -8,20 +8,6 @@ public class ControllableIO extends Device {
     private int controllableRelays;
     private int sensorInputs;
 
-    //constructors
-    public ControllableIO(String model, int infraredOutputs, int serialOutputs, int controllableRelays, int sensorInputs) {
-
-        super(model);
-        this.infraredOutputs = infraredOutputs;
-        this.serialOutputs = serialOutputs;
-        this.controllableRelays = controllableRelays;
-        this.sensorInputs = sensorInputs;
-    }
-
-    public ControllableIO(String model) {
-
-        super(model);
-    }
 
     //getters & setters
     public void setInfraredOutputs (int infraredOutputs) {this.infraredOutputs = infraredOutputs;}

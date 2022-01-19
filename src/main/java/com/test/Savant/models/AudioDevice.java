@@ -1,5 +1,8 @@
 package com.test.Savant.models;
 
+import javax.persistence.Entity;
+
+@Entity
 public class AudioDevice extends Device {
 
     //properties of Audio Device
@@ -7,17 +10,13 @@ public class AudioDevice extends Device {
     private ControllableIO controllableIO;
 
     //constructors
-    public AudioDevice (String model, SignalIO signalIO, ControllableIO controllableIO) {
+    public AudioDevice (SignalIO signalIO, ControllableIO controllableIO) {
 
-        super(model);
         this.signalIO = signalIO;
         this.controllableIO = controllableIO;
     }
 
-    public AudioDevice (String model) {
-
-        super(model);
-    }
+    public AudioDevice () {}
 
     //getters & setters
     public void setSignalIO(SignalIO signalIO) {this.signalIO = signalIO;}

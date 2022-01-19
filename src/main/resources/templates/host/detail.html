@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: admin-header"></header>
+
+<table class="table table-striped">
+    <tr>
+        <th>model</th>
+        <td th:text="${host.model}"></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${host.description}"></td>
+    </tr>
+    <tr>
+        <th>Video Zones</th>
+        <td th:text="${host.videoZones}"></td>
+    </tr>
+    <tr>
+        <th>Audio Zones</th>
+        <td th:text="${host.audioZones}"></td>
+    </tr>
+    <tr>
+        <th>Supported Light Circuits</th>
+        <td th:text="${host.supportedLights}"></td>
+    </tr>
+    <tr>
+        <th>Supported Sensors</th>
+        <td th:text="${host.supportedSensors}"></td>
+    </tr>
+    <tr>
+        <th>Embedded Host</th>
+        <td th:text="${host.embedded}"></td>
+    </tr>
+</table>
+
+<table th:if="${host.controlIO}" class="table-striped">
+    <tr>
+        <th>Infrared Outputs</th>
+        <td th:text="${host.controlIO.infraredOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Serial Outputs (RS232)</th>
+        <td th:text="{host.controlIO.serialOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Controllable Relays</th>
+        <td th:text="${host.controlIO.controllableRelays}"></td>
+    </tr>
+    <tr>
+        <th>Sensor Inputs</th>
+        <td th:text="${host.controlIO.sensorInputs}"></td>
+    </tr>
+</table>
+
+<table th:if="${host.signalIO}" class="table-striped}">
+    <tr>
+        <th>Low-level (RCA) Outputs</th>
+        <td th:text="${host.signalIO.lowOutputs}"></td>
+    </tr>
+    <tr>
+        <th>High-level (Speaker) Outputs</th>
+        <td th:text="${host.signalIO.highOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Analog (RCA) Inputs</th>
+        <td th:text="${host.signalIO.analogInputs}"></td>
+    </tr>
+    <tr>
+        <th>Digital Inputs/th>
+        <td th:text="${host.signalIO.digitalInputs}"></td>
+    </tr>
+    <tr>
+        <th>Digital Outputs</th>
+        <td th:text="${host.signalIO.digitalOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Embedded Stream</th>
+        <td th:text="${host.signalIO.embeddedStreams}"></td>
+    </tr>
+</table>
+</body>
+</html>

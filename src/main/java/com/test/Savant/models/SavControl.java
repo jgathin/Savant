@@ -1,21 +1,20 @@
 package com.test.Savant.models;
 
+import javax.persistence.Entity;
+
+@Entity
 public class SavControl extends Device{
 
     //properties of controller
     private ControllableIO controllableIO;
 
     //constructors
-    public SavControl(String model, ControllableIO controllableIO) {
+    public SavControl(ControllableIO controllableIO) {
 
-        super(model);
         this.controllableIO = controllableIO;
     }
 
-    public SavControl(String model) {
-
-        super(model);
-    }
+    public SavControl() {}
 
     //getters & setters
     public void setControllableIO (ControllableIO controllableIO) {this.controllableIO = controllableIO;}
