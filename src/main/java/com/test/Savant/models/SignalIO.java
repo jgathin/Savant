@@ -1,14 +1,19 @@
 package com.test.Savant.models;
 
-public class SignalIO {
+import com.test.Savant.AbstractEntity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class SignalIO extends AbstractEntity {
 
     //properties of Signal Ins & Outs
-    private int lowOutputs;
-    private int highOutputs;
-    private int analogInputs;
-    private int digitalInputs;
-    private int digitalOutputs;
-    private boolean embeddedStreams;
+    private int lowOutputs = 0;
+    private int highOutputs = 0;
+    private int analogInputs = 0;
+    private int digitalInputs = 0;
+    private int digitalOutputs = 0;
+    private boolean embeddedStreams = false;
 
     //getters & setters
     public void setLowOutputs(int lowOutputs) {this.lowOutputs = lowOutputs;}

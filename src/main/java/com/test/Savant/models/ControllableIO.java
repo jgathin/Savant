@@ -1,12 +1,17 @@
 package com.test.Savant.models;
 
-public class ControllableIO {
+import com.test.Savant.AbstractEntity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class ControllableIO extends AbstractEntity {
 
     //properties of Controllable Ins & Outs
-    private int infraredOutputs;
-    private int serialOutputs;
-    private int controllableRelays;
-    private int sensorInputs;
+    private int infraredOutputs = 0;
+    private int serialOutputs = 0;
+    private int controllableRelays = 0;
+    private int sensorInputs = 0;
 
 
     //getters & setters

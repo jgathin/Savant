@@ -1,6 +1,8 @@
 package com.test.Savant.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Host extends Device {
@@ -11,7 +13,9 @@ public class Host extends Device {
     private int supportedLights;
     private int supportedSensors;
     private boolean embedded;
+    @OneToOne(cascade = CascadeType.ALL)
     private ControllableIO controlIO;
+    @OneToOne(cascade = CascadeType.ALL)
     private SignalIO signalIO;
 
     //constructors

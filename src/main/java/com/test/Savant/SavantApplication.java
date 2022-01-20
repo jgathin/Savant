@@ -14,16 +14,16 @@ public class SavantApplication {
 		SpringApplication.run(SavantApplication.class, args);
 	}
 
-	@Bean
-	public TomcatServletWebServerFactory servletContainer() {
-		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-		Connector ajpConnector = new Connector("AJP/1.3");
-		ajpConnector.setPort(9090);
-		ajpConnector.setSecure(false);
-		ajpConnector.setAllowTrace(false);
-		ajpConnector.setScheme("http");
-		((AbstractAjpProtocol<?>)ajpConnector.getProtocolHandler()).setSecretRequired(false);
-		tomcat.addAdditionalTomcatConnectors(ajpConnector);
-		return tomcat;
-	}
+//	@Bean
+//	public TomcatServletWebServerFactory servletContainer() {
+//		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+//		Connector ajpConnector = new Connector("AJP/1.3");
+//		ajpConnector.setPort(9090);
+//		ajpConnector.setSecure(false);
+//		ajpConnector.setAllowTrace(false);
+//		ajpConnector.setScheme("http");
+//		((AbstractAjpProtocol<?>)ajpConnector.getProtocolHandler()).setSecretRequired(false);
+//		tomcat.addAdditionalTomcatConnectors(ajpConnector);
+//		return tomcat;
+//	}
 }
