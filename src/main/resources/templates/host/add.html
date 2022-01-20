@@ -1,10 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: admin-header"></header>
+
+<form method="post">
+    <h2>General Information</h2>
+    <div class="form-group">
+        <label>Model
+            <input th:field="${host.model}" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.model}"></p>
+    </div>
+    <div class="form-group">
+        <label>Description
+            <input th:field="${host.description}" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.description}"></p>
+    </div>
+    <div class="form-group">
+        <label>Number of Video Zones
+            <input th:field="${host.videoZones}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.videoZones}"></p>
+    </div>
+    <div class="form-group">
+        <label>Total Zones
+            <input th:field="${host.videoZones}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.videoZones}"></p>
+    </div>
+    <div class="form-group">
+        <label>Number of Lighting Devices
+            <input th:field="${host.supportedLights}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.supportedLights}"></p>
+    </div>
+    <div class="form-group">
+        <label>Number of Sensor Outputs/Inputs
+            <input th:field="${host.videoZones}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.videoZones}"></p>
+    </div>
+
+    //need to return to this division. Need to ensure it's written properly.
+    <div class="form-group">
+        <label>Embedded Host
+            <input th:field="${host.embedded}" type="checkbox" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.embedded}"></p>
+    </div>
+
+    <h2>Control Settings</h2>
+    <div class="form-group">
+        <label>IR Outputs
+            <input th:field="${host.controlIO.infraredOutputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.controlIO.infraredOutputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Serial Outputs
+            <input th:field="${host.controlIO.serialOutputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.controlIO.serialOutputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Controllable Relays
+            <input th:field="${host.controlIO.controllableRelays}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.controlIO.controllableRelays}"></p>
+    </div>
+    <div class="form-group">
+        <label>Sensor Inputs
+            <input th:field="${host.controlIO.sensorInputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.controlIO.sensorInputs}"></p>
+    </div>
+
+    <h2>Signal Settings</h2>
+    <div class="form-group">
+        <label>Low Level (RCA) Outputs
+            <input th:field="${host.signalIO.lowOutputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.signalIO.lowOutputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>High Level (Speaker) Outputs
+            <input th:field="${host.signalIO.highOutputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.signalIO.highOutputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Analog (RCA) Inputs
+            <input th:field="${host.signalIO.analogInputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.signalIO.analogInputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Digital Inputs
+            <input th:field="${host.signalIO.digitalInputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.signalIO.digitalInputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Digital Outputs
+            <input th:field="${host.signalIO.digitalOutputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.signalIO.digitalOutputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Embedded Streams
+            <input th:field="${host.signalIO.embeddedStream}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${host.signalIO.embeddedStream}"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-secondary">
+    </div>
+</form>
+
 
 </body>
 </html>
