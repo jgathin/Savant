@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: admin-header"></header>
+
+<form method="post">
+    <h2>General Information</h2>
+    <div class="form-group">
+        <label>Model
+            <input th:field="savControl.model" class="form-control">
+        </label>
+        <p th:errors="savControl.model" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Description
+            <input th:field="savControl.description" class="form-control">
+        </label>
+        <p th:errors="savControl.description" class="error"></p>
+    </div>
+
+    <h2>Control Settings</h2>
+    <div class="form-group">
+        <label>IR Outputs
+            <input th:field="savControl.controlIO.infraredOutputs" type="number" class="form-control">
+        </label>
+        <p th:errors="savControl.controlIO.infraredOutputs" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Serial Outputs
+            <input th:field="savControl.controlIO.serialOutputs" type="number" class="form-control">
+        </label>
+        <p th:errors="savControl.controlIO.serialOutputs" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Controllable Relays
+            <input th:field="savControl.controlIO.controllableRelays" type="number" class="form-control">
+        </label>
+        <p th:errors="savControl.controlIO.controllableRelays" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Sensor Inputs
+            <input th:field="savControl.controlIO.sensorInputs" type="number" class="form-control">
+        </label>
+        <p th:errors="savControl.controlIO.sensorInputs" class="error"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-secondary">
+    </div>
+</form>
 
 </body>
 </html>

@@ -6,18 +6,18 @@ import javax.persistence.Entity;
 public class SavControl extends Device{
 
     //properties of controller
-    private ControllableIO controllableIO;
+    private ControllableIO controlIO;
 
     //constructors
-    public SavControl(ControllableIO controllableIO) {
+    public SavControl(ControllableIO controlIO) {
 
-        this.controllableIO = controllableIO;
+        this.controlIO = controlIO;
     }
 
     public SavControl() {}
 
     //getters & setters
-    public void setControllableIO (ControllableIO controllableIO) {this.controllableIO = controllableIO;}
-    public ControllableIO getControllableIO () {return this.controllableIO;}
+    public void setControllableIO (ControllableIO controllableIO) {this.controlIO = controllableIO;}
+    public ControllableIO getControllableIO () {return this.controlIO;}
 
 }
