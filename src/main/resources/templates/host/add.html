@@ -39,41 +39,47 @@
     </div>
     <div class="form-group">
         <label>Number of Sensor Outputs/Inputs
-            <input th:field="${host.videoZones}" type="number" class="form-control">
+            <input th:field="${host.supportedSensors}" type="number" class="form-control">
         </label>
-        <p class="error" th:errors="${host.videoZones}"></p>
+        <p class="error" th:errors="${host.supportedSensors}"></p>
     </div>
 
     //need to return to this division. Need to ensure it's written properly.
     <div class="form-group">
-        <label>Embedded Host
-            <input th:field="${host.embedded}" type="checkbox" class="form-control">
-        </label>
-        <p class="error" th:errors="${host.embedded}"></p>
+        <label>Embedded Host</label>
+        <div>
+        <input class="form-control" type="radio" id="false" name="false" value="false" th:field="${host.embedded}">
+        <label for="false">False</label>
+        </div>
+        <div class="form-group">
+        <input class="form-control" type="radio" id="true" name="true" value="true" th:field="${host.embedded}">
+        <label for="true">True</label>
+        </div>
+    <p class="error" th:errors="${host.embedded}"></p>
     </div>
 
     <h2>Control Settings</h2>
     <div class="form-group">
         <label>IR Outputs
-            <input th:field="${host.controlIO.infraredOutputs}" type="number" class="form-control">
+            <input th:field="${host.controlIO.infraredOutputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.controlIO.infraredOutputs}"></p>
     </div>
     <div class="form-group">
         <label>Serial Outputs
-            <input th:field="${host.controlIO.serialOutputs}" type="number" class="form-control">
+            <input th:field="${host.controlIO.serialOutputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.controlIO.serialOutputs}"></p>
     </div>
     <div class="form-group">
         <label>Controllable Relays
-            <input th:field="${host.controlIO.controllableRelays}" type="number" class="form-control">
+            <input th:field="${host.controlIO.controllableRelays}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.controlIO.controllableRelays}"></p>
     </div>
     <div class="form-group">
         <label>Sensor Inputs
-            <input th:field="${host.controlIO.sensorInputs}" type="number" class="form-control">
+            <input th:field="${host.controlIO.sensorInputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.controlIO.sensorInputs}"></p>
     </div>
@@ -81,37 +87,37 @@
     <h2>Signal Settings</h2>
     <div class="form-group">
         <label>Low Level (RCA) Outputs
-            <input th:field="${host.signalIO.lowOutputs}" type="number" class="form-control">
+            <input th:field="${host.signalIO.lowOutputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.signalIO.lowOutputs}"></p>
     </div>
     <div class="form-group">
         <label>High Level (Speaker) Outputs
-            <input th:field="${host.signalIO.highOutputs}" type="number" class="form-control">
+            <input th:field="${host.signalIO.highOutputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.signalIO.highOutputs}"></p>
     </div>
     <div class="form-group">
         <label>Analog (RCA) Inputs
-            <input th:field="${host.signalIO.analogInputs}" type="number" class="form-control">
+            <input th:field="${host.signalIO.analogInputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.signalIO.analogInputs}"></p>
     </div>
     <div class="form-group">
         <label>Digital Inputs
-            <input th:field="${host.signalIO.digitalInputs}" type="number" class="form-control">
+            <input th:field="${host.signalIO.digitalInputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.signalIO.digitalInputs}"></p>
     </div>
     <div class="form-group">
         <label>Digital Outputs
-            <input th:field="${host.signalIO.digitalOutputs}" type="number" class="form-control">
+            <input th:field="${host.signalIO.digitalOutputs}" type="number" min="0" max="20" class="form-control">
         </label>
         <p class="error" th:errors="${host.signalIO.digitalOutputs}"></p>
     </div>
     <div class="form-group">
         <label>Embedded Streams
-            <input th:field="${host.signalIO.embeddedStream}" type="number" class="form-control">
+            <input th:field="${host.signalIO.embeddedStream}" type="number" min="0" max="10" class="form-control">
         </label>
         <p class="error" th:errors="${host.signalIO.embeddedStream}"></p>
     </div>

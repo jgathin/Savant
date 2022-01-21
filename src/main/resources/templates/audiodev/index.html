@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: admin-header"></header>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Model</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr th:each="audioDev : ${audioDevs}">
+        <td><a class="headler-link" th:href="'/audiodev/detail?audioDevId=' + ${audioDev.id}" th:text="audioDev.model"></a></td>
+        <td th:text="${audioDev.description}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

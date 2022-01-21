@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: admin-header"></header>
+
+<table class="table-striped">
+    <tr>
+        <th>Model</th>
+        <td th:text="${audioDevice.model}"></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${audioDevice.description}"></td>
+    </tr>
+</table>
+
+<table th:if="${audioDevice.signalIO}" class="table-striped">
+    <tr>
+        <th>Low-level (RCA) Outputs</th>
+        <td th:text="${audioDevice.signalIO.lowOutputs}"></td>
+    </tr>
+    <tr>
+        <th>High-level (Speaker) Outputs</th>
+        <td th:text="${audioDevice.signalIO.highOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Analog (RCA) Inputs</th>
+        <td th:text="${audioDevice.signalIO.analogInputs}"></td>
+    </tr>
+    <tr>
+        <th>Digital Inputs</th>
+        <td th:text="${audioDevice.signalIO.digitalInputs}"></td>
+    </tr>
+    <tr>
+        <th>Digital Outputs</th>
+        <td th:text="${audioDevice.signalIO.digitalOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Embedded Streams</th>
+        <td th:text="${audioDevice.signalIO.embeddedStreams}"></td>
+    </tr>
+</table>
+
+<table th:if="${audioDevice.controlIO}">
+    <tr>
+        <th>Infrared Outputs</th>
+        <td th:text="${audioDevice.controlIO.infraredOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Serial Outputs</th>
+        <td th:text="${audioDevice.controlIO.serialOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Controllable Relays</th>
+        <td th:text="${audioDevice.controlIO.controllableRelays}"></td>
+    </tr>
+    <tr>
+        <th>Sensor Inputs</th>
+        <td th:text="${audioDevice.controlIO.sensorInputs}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

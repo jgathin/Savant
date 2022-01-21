@@ -4,6 +4,31 @@
 <body class="container">
 <header th:replace="fragments :: admin-header"></header>
 
-
+<table class="table-striped">
+    <tr>
+        <th>Model</th>
+        <td th:text="${savControl.model}"></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${savControl.description}"></td>
+    </tr>
+    <tr>
+        <th>Infrared Outputs</th>
+        <td th:text="${savControl.controlIO.infraredOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Serial Outputs</th>
+        <td th:text="${savControl.controlIO.serialOutputs}"></td>
+    </tr>
+    <tr>
+        <th>Controllable Relays</th>
+        <td th:text="${savControl.controlIO.controllableRelays}"></td>
+    </tr>
+    <tr>
+        <th>Sensor Inputs</th>
+        <td th:text="${savControl.controlIO.sensorInputs}"></td>
+    </tr>
+</table>
 </body>
 </html>
