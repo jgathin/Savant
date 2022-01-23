@@ -5,7 +5,7 @@
 <header th:replace="fragments :: admin-header"></header>
 
 <form method="post" th:action="@{/host/edit}">
-    <input type="hidden" th:value="${host.id}" name="hostID" />
+    <input type="hidden" th:value="${host.id}" name="hostId" />
     <div class="form-group">
         <label>Model
             <input th:field="${host.model}" th:value="${host.model}" class="form-control">

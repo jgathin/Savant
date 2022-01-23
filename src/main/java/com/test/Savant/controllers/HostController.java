@@ -100,4 +100,34 @@ public class HostController {
         return "host/detail";
     }
 
+    @GetMapping("edit/{hostId}")
+    public String displayEditHostPage(Model model, @PathVariable Integer hostId, HttpServletRequest request) {
+        User user = (User) getUserFromSession(request.getSession());
+
+        Optional<Host> result = hostRepository.findById(hostId);
+        Host editHost = result.get();
+        model.addAttribute("title", "Edit " + editHost.getModel());
+        model.addAttribute("host", editHost);
+
+        return "host/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditHostPage (@ModelAttribute @Valid Host host, Integer hostId, HttpServletRequest request,
+                                       Errors errors, Model model) {
+        User user = (User) getUserFromSession(request.getSession());
+
+        Optional<Host> result = hostRepository.findById(hostId);
+        Host newHost = result.get();
+
+        if (errors.hasErrors()) {
+
+            model.addAttribute("title", "Edit " + newHost.getModel());
+            return "host/edit";
+        }
+
+        hostRepository.save(host);
+
+        return "redirect:host";
+    }
 }
