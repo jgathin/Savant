@@ -7,27 +7,27 @@
 <table class="table-striped">
     <tr>
         <th>Model</th>
-        <td th:text="${savControl.model}"></td>
+        <td th:text="${controller.model}"></td>
     </tr>
     <tr>
         <th>Description</th>
-        <td th:text="${savControl.description}"></td>
+        <td th:text="${controller.description}"></td>
     </tr>
     <tr>
         <th>Infrared Outputs</th>
-        <td th:text="${savControl.controlIO.infraredOutputs}"></td>
+        <td th:text="${controller.controlIO.infraredOutputs}"></td>
     </tr>
     <tr>
         <th>Serial Outputs</th>
-        <td th:text="${savControl.controlIO.serialOutputs}"></td>
+        <td th:text="${controller.controlIO.serialOutputs}"></td>
     </tr>
     <tr>
         <th>Controllable Relays</th>
-        <td th:text="${savControl.controlIO.controllableRelays}"></td>
+        <td th:text="${controller.controlIO.controllableRelays}"></td>
     </tr>
     <tr>
         <th>Sensor Inputs</th>
-        <td th:text="${savControl.controlIO.sensorInputs}"></td>
+        <td th:text="${controller.controlIO.sensorInputs}"></td>
     </tr>
 </table>
 </body>

@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -80,4 +77,52 @@ public class SavControlController {
 
         return "redirect:detail?savControlId=" + newSavControl.getId();
     }
+
+    @GetMapping("detail")
+    public String displaySavantControlDetailPage(@RequestParam Integer savControlId, Model model, HttpServletRequest request) {
+        User user = getUserFromSession(request.getSession());
+
+        Optional<SavControl> result = savControlRepository.findById(savControlId);
+
+        if (result.isEmpty()){
+            model.addAttribute("title", "Invalid Savant Controller ID " + savControlId);
+        } else {
+            SavControl newSavControl = result.get();
+            model.addAttribute("title", newSavControl.getModel() + " Details");
+            model.addAttribute("controller", newSavControl);
+        }
+            return "control/detail";
+        }
+
+    @GetMapping("edit/{savControlId}")
+    public String displayEditSavantControlPage(@PathVariable Integer savControlId, Model model,
+                                               HttpServletRequest request) {
+        User user = getUserFromSession(request.getSession());
+
+        Optional<SavControl> result = savControlRepository.findById(savControlId);
+        SavControl editSavControl = result.get();
+        model.addAttribute("title", "Edit " + editSavControl.getModel());
+        model.addAttribute("controller", editSavControl);
+
+        return "control/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditSavantControlPage(@ModelAttribute @Valid SavControl savControl, Integer savControlId,
+                                               Errors errors, HttpServletRequest request, Model model) {
+        User user = getUserFromSession(request.getSession());
+
+        Optional<SavControl> result = savControlRepository.findById(savControlId);
+        SavControl newSavControl = result.get();
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Edit " + newSavControl.getModel();
+            return "control/edit";
+        }
+
+        savControlRepository.save(savControl);
+
+        return "redirect:detail?savControlId=" + savControl.getId();
+    }
+
 }

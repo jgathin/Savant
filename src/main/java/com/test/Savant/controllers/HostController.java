@@ -78,7 +78,7 @@ public class HostController {
 
         hostRepository.save(newHost);
 
-        return "redirect:host";
+        return "redirect:detail?hostID=" + newHost.getId();
     }
 
     @GetMapping("detail")
