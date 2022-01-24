@@ -2,10 +2,16 @@ package com.test.Savant.models;
 
 import com.test.Savant.AbstractEntity;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Device extends AbstractEntity {
 
+    @Column(name = "model")
     private String model;
 
+    @Column(name = "description")
     private String description;
 
     //getters & setters

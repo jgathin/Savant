@@ -43,7 +43,7 @@ public class SavControlController {
         return user.get();
     }
 
-    @GetMapping("index")
+    @GetMapping
     public String displaySavControlIndex(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
 
@@ -116,7 +116,7 @@ public class SavControlController {
         SavControl newSavControl = result.get();
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Edit " + newSavControl.getModel();
+            model.addAttribute("title", "Edit " + newSavControl.getModel());
             return "control/edit";
         }
 

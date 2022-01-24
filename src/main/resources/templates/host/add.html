@@ -27,9 +27,9 @@
     </div>
     <div class="form-group">
         <label>Total Zones
-            <input th:field="${host.videoZones}" type="number" class="form-control">
+            <input th:field="${host.totalZones}" type="number" class="form-control">
         </label>
-        <p class="error" th:errors="${host.videoZones}"></p>
+        <p class="error" th:errors="${host.totalZones}"></p>
     </div>
     <div class="form-group">
         <label>Number of Lighting Devices
@@ -117,9 +117,9 @@
     </div>
     <div class="form-group">
         <label>Embedded Streams
-            <input th:field="${host.signalIO.embeddedStream}" type="number" min="0" max="10" class="form-control">
+            <input th:field="${host.signalIO.embeddedStreams}" type="number" min="0" max="10" class="form-control">
         </label>
-        <p class="error" th:errors="${host.signalIO.embeddedStream}"></p>
+        <p class="error" th:errors="${host.signalIO.embeddedStreams}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="Add" class="btn btn-secondary">

@@ -13,7 +13,7 @@ public class SignalIO extends AbstractEntity {
     private int analogInputs = 0;
     private int digitalInputs = 0;
     private int digitalOutputs = 0;
-    private boolean embeddedStreams = false;
+    private int embeddedStreams = 0;
 
     //getters & setters
     public void setLowOutputs(int lowOutputs) {this.lowOutputs = lowOutputs;}
@@ -31,7 +31,11 @@ public class SignalIO extends AbstractEntity {
     public void setDigitalOutputs (int digitalOutputs) {this.digitalOutputs = digitalOutputs;}
     public int getDigitalOutputs () {return this.digitalOutputs;}
 
-    public void setEmbeddedStreams (boolean embeddedStreams) {this.embeddedStreams = embeddedStreams;}
-    public boolean getEmbeddedStreams () {return this.embeddedStreams;}
+    public int getEmbeddedStreams() {
+        return embeddedStreams;
+    }
 
+    public void setEmbeddedStreams(int embeddedStreams) {
+        this.embeddedStreams = embeddedStreams;
+    }
 }

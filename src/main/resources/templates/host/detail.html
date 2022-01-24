@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body>
+<body class="container">
 <header th:replace="fragments :: admin-header"></header>
+
 
 <table class="table table-striped">
     <tr>
@@ -20,7 +21,7 @@
     </tr>
     <tr>
         <th>Audio Zones</th>
-        <td th:text="${host.audioZones}"></td>
+        <td th:text="${host.totalZones}"></td>
     </tr>
     <tr>
         <th>Supported Light Circuits</th>
@@ -35,15 +36,15 @@
         <td th:text="${host.embedded}"></td>
     </tr>
 </table>
-
-<table th:if="${host.controlIO}" class="table-striped">
+<h2>Control Outputs</h2>
+<table class="table table-striped">
     <tr>
         <th>Infrared Outputs</th>
         <td th:text="${host.controlIO.infraredOutputs}"></td>
     </tr>
     <tr>
         <th>Serial Outputs (RS232)</th>
-        <td th:text="{host.controlIO.serialOutputs}"></td>
+        <td th:text="${host.controlIO.serialOutputs}"></td>
     </tr>
     <tr>
         <th>Controllable Relays</th>
@@ -54,8 +55,8 @@
         <td th:text="${host.controlIO.sensorInputs}"></td>
     </tr>
 </table>
-
-<table th:if="${host.signalIO}" class="table-striped}">
+<h2>Signal Outputs</h2>
+<table class="table table-striped}">
     <tr>
         <th>Low-level (RCA) Outputs</th>
         <td th:text="${host.signalIO.lowOutputs}"></td>
@@ -69,7 +70,7 @@
         <td th:text="${host.signalIO.analogInputs}"></td>
     </tr>
     <tr>
-        <th>Digital Inputs/th>
+        <th>Digital Inputs</th>
         <td th:text="${host.signalIO.digitalInputs}"></td>
     </tr>
     <tr>

@@ -5,7 +5,8 @@
 <body class="container">
 <header th:replace="fragments :: admin-header"></header>
 
-<table class="table table-striped">
+<table class="table table-striped" py-2>
+    <h1 th:text="${title}"></h1>
     <thead>
     <tr>
         <th>Model</th>
@@ -13,7 +14,7 @@
     </tr>
     </thead>
     <tr th:each="host : ${hosts}">
-        <td><a class="header-link" th:href="'/host/detail?hostId=' + ${host.id}" th:text="${host.model}"></a></td>
+        <td><a th:href="'/host/detail?hostId=' + ${host.id}"  th:text="${host.model}"></a></td>
         <td th:text="${host.description}"></td>
     </tr>
 </table>

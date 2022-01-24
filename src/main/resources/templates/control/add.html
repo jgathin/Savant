@@ -8,9 +8,9 @@
     <h2>General Information</h2>
     <div class="form-group">
         <label>Model
-            <input th:field="savControl.model" class="form-control">
+            <input th:field="${savControl.model}" class="form-control">
         </label>
-        <p th:errors="savControl.model" class="error"></p>
+        <p th:errors="${savControl.model}" class="error"></p>
     </div>
     <div class="form-group">
         <label>Description
