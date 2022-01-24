@@ -58,7 +58,7 @@ public class SavControlController {
         User user = getUserFromSession(request.getSession());
 
         model.addAttribute("title", "Add Savant Controller");
-        model.addAttribute(new SavControl());
+        model.addAttribute("savControl", new SavControl());
 
         return "control/add";
     }
@@ -75,7 +75,7 @@ public class SavControlController {
 
         savControlRepository.save(newSavControl);
 
-        return "redirect:detail?savControlId=" + newSavControl.getId();
+        return "redirect:";
     }
 
     @GetMapping("detail")
@@ -102,7 +102,7 @@ public class SavControlController {
         Optional<SavControl> result = savControlRepository.findById(savControlId);
         SavControl editSavControl = result.get();
         model.addAttribute("title", "Edit " + editSavControl.getModel());
-        model.addAttribute("controller", editSavControl);
+        model.addAttribute("savControl  ", editSavControl);
 
         return "control/edit";
     }

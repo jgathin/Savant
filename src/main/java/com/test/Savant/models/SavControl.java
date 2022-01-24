@@ -21,7 +21,7 @@ public class SavControl extends Device{
     public SavControl() {}
 
     //getters & setters
-    public void setControllableIO (ControllableIO controllableIO) {this.controlIO = controllableIO;}
-    public ControllableIO getControllableIO () {return this.controlIO;}
+    public void setControlIO (ControllableIO controlIO) {this.controlIO = controlIO;}
+    public ControllableIO getControlIO () {return this.controlIO;}
 
 }

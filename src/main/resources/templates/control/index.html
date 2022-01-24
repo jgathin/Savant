@@ -13,8 +13,8 @@
     </tr>
     </thead>
     <tr th:each="controller : ${controllers}">
-        <td><a class="header-link" th:href="'/control/detail?controllerId=' + ${controller.id}" th:text="${controller.model}"></a></td>
-        <td th:text="${controller.description"}></td>
+        <td><a class="header-link" th:href="'/control/detail?savControlId=' + ${controller.id}" th:text="${controller.model}"></a></td>
+        <td th:text="${controller.description}"></td>
     </tr>
 </table>
 
