@@ -44,6 +44,43 @@
         </label>
         <p th:errors="${audioDevice.controlIO.sensorInputs}" class="error"></p>
     </div>
+    <h2>Output Settings</h2>
+    <div class="form-group">
+        <label>Low Level (RCA) Outputs
+            <input th:field="${audioDevice.signalIO.lowOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.lowOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>High Level (Speaker) Outputs
+            <input th:field="${audioDevice.signalIO.highOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.highOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Low Level (RCA) Inputs
+            <input th:field="${audioDevice.signalIO.analogInputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.analogInputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Digital Inputs
+            <input th:field="${audioDevice.signalIO.digitalInputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.digitalInputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Digital Outputs
+            <input th:field="${audioDevice.signalIO.digitalOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.digitalOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Embedded Streams
+            <input th:field="${audioDevice.signalIO.embeddedStreams}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.embeddedStreams}" class="error"></p>
+    </div>
     <div class="form-group">
         <input type="submit" value="Add" class="btn btn-secondary">
     </div>

@@ -4,16 +4,17 @@
 <body class="container">
 <header th:replace="fragments :: admin-header"></header>
 
-<table class="table table-striped">
+<table class="table table-striped py-2">
+    <h1 th:text="${title}"></h1>
     <thead>
     <tr>
         <th>Model</th>
         <th>Description</th>
     </tr>
     </thead>
-    <tr th:each="audioDev : ${audioDevs}">
-        <td><a class="headler-link" th:href="'/audiodev/detail?audioDevId=' + ${audioDev.id}" th:text="audioDev.model"></a></td>
-        <td th:text="${audioDev.description}"></td>
+    <tr th:each="audioDevice : ${audioDevices}">
+        <td><a class="header-link" th:href="'/audiodev/detail?audioDeviceId=' + ${audioDevice.id}" th:text="${audioDevice.model}"></a></td>
+        <td th:text="${audioDevice.description}"></td>
     </tr>
 </table>
 

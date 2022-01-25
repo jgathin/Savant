@@ -48,7 +48,7 @@ public class AudioDeviceController {
         User user = getUserFromSession(request.getSession());
 
         model.addAttribute("title", "Savant Audio Devices");
-        model.addAttribute("audioDevs", audioDevRepository.findAll());
+        model.addAttribute("audioDevices", audioDevRepository.findAll());
 
         return "audiodev/index";
     }
@@ -58,13 +58,14 @@ public class AudioDeviceController {
         User user = getUserFromSession(request.getSession());
 
         model.addAttribute("title", "Add Savant Audio Device");
-        model.addAttribute("audioDev", new AudioDevice());
+        model.addAttribute("audioDevice", new AudioDevice());
 
         return "audiodev/add";
     }
 
     @PostMapping("add")
-    public String renderAddSavantControlPage(@ModelAttribute @Valid AudioDevice newAudioDev, HttpServletRequest request,
+    public String renderAddSavantControlPage(@ModelAttribute @Valid AudioDevice newAudioDevice,
+                                             HttpServletRequest request,
                                              Errors errors, Model model) {
         User user = getUserFromSession(request.getSession());
 
@@ -73,7 +74,7 @@ public class AudioDeviceController {
             return "audiodev/add";
         }
 
-        audioDevRepository.save(newAudioDev);
+        audioDevRepository.save(newAudioDevice);
 
         return "redirect:";
     }
