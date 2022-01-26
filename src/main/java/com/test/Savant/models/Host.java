@@ -54,4 +54,13 @@ public class Host extends Device {
     public void setSignalIO (SignalIO signalIO) {this.signalIO = signalIO;}
     public SignalIO getSignalIO () {return this.signalIO;}
 
+    public boolean hostSelection (int v, int t) {
+        if (v < this.videoZones ) {
+            return true;
+        } else  if ( t < this.totalZones) {
+            return true;
+        }
+        return false;
+    }
+
 }
