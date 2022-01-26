@@ -5,8 +5,49 @@
 <header th:replace="fragments :: admin-header"></header>
 
 <form method="post" th:action="@{/control/edit}">
-    <input type="hidden" th:value="${savControl.id}" name="savControlId" />
+    <input type="hidden" th:field="${savControl.id}" th:value="${savControl.id}" name="savControlId" />
+    <input type="hidden" th:field="${savControl.controlIO.id}" th:value="${savControl.controlIO.id}" />
+    <div class="form-group">
+        <label>Model
+            <input th:field="${savControl.model}" th:value="${savControl.model}" class="form-control">
+        </label>
+        <p class="error" th:errors="${savControl.model}"></p>
+    </div>
+    <div class="form-group">
+        <label>Description
+            <input th:field="${savControl.description}" th:value="${savControl.description}" class="form-control">
+        </label>
+        <p class="error" th:errors="${savControl.description}"></p>
+    </div>
 
+    <h2>Control Settings</h2>
+    <div class="form-group">
+        <label>IR Outputs
+            <input th:field="${savControl.controlIO.infraredOutputs}" th:value="${savControl.controlIO.infraredOutputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${savControl.controlIO.infraredOutputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Serial Outputs
+            <input th:field="${savControl.controlIO.serialOutputs}" th:value="${savControl.controlIO.serialOutputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${savControl.controlIO.serialOutputs}"></p>
+    </div>
+    <div class="form-group">
+        <label>Controllable Relays
+            <input th:field="${savControl.controlIO.controllableRelays}" th:value="${savControl.controlIO.controllableRelays}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${savControl.controlIO.controllableRelays}"></p>
+    </div>
+    <div class="form-group">
+        <label>IR Outputs
+            <input th:field="${savControl.controlIO.sensorInputs}" th:value="${savControl.controlIO.sensorInputs}" type="number" class="form-control">
+        </label>
+        <p class="error" th:errors="${savControl.controlIO.sensorInputs}"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Edit" class="btn btn-secondary">
+    </div>
 </form>
 
 </body>

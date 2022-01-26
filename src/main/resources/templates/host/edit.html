@@ -5,7 +5,9 @@
 <header th:replace="fragments :: admin-header"></header>
 
 <form method="post" th:action="@{/host/edit}">
-    <input type="hidden" th:value="${host.id}" name="hostId" />
+    <input type="hidden" th:field="${host.id}" th:value="${host.id}" name="hostId" />
+    <input type="hidden" th:field="${host.controlIO.id}" th:value="${host.controlIO.id}"/>
+    <input type="hidden" th:field="${host.signalIO.id}" th:value="${host.signalIO   .id}" />
     <div class="form-group">
         <label>Model
             <input th:field="${host.model}" th:value="${host.model}" class="form-control">
@@ -50,7 +52,7 @@
         </div>
         <div>
             <input class="form-control" type="radio" id="true" name="true" value="true" th:field="${host.embedded}" th:value="${host.embedded}">
-            <label for="false">False</label>
+            <label for="true">True</label>
         </div>
         <p class="error" th:errors="${host.embedded}"></p>
     </div>
@@ -84,39 +86,39 @@
     <h2>Signal Settings</h2>
     <div class="form-group">
         <label>Low Level (RCA) Outputs
-            <input type="number" min="0" max="20" th:field="${host.controlIO.lowOutputs}" th:value="${host.controlIO.lowOutputs}" class="form-control">
+            <input type="number" min="0" max="20" th:field="${host.signalIO.lowOutputs}" th:value="${host.signalIO.lowOutputs}" class="form-control">
         </label>
-        <p class="error" th:errors="${host.controlIO.lowOutputs}"></p>
+        <p class="error" th:errors="${host.signalIO.lowOutputs}"></p>
     </div>
     <div class="form-group">
         <label>High Level (Speaker) Outputs
-            <input type="number" min="0" max="20" th:field="${host.controlIO.highOutputs}" th:value="${host.controlIO.highOutputs}" class="form-control">
+            <input type="number" min="0" max="20" th:field="${host.signalIO.highOutputs}" th:value="${host.signalIO.highOutputs}" class="form-control">
         </label>
-        <p class="error" th:errors="${host.controlIO.highOutputs}"></p>
+        <p class="error" th:errors="${host.signalIO.highOutputs}"></p>
     </div>
     <div class="form-group">
         <label>Analog (RCA) Inputs
-            <input type="number" min="0" max="20" th:field="${host.controlIO.analogInputs}" th:value="${host.controlIO.analogInputs}" class="form-control">
+            <input type="number" min="0" max="20" th:field="${host.signalIO.analogInputs}" th:value="${host.signalIO.analogInputs}" class="form-control">
         </label>
-        <p class="error" th:errors="${host.controlIO.analogInputs}"></p>
+        <p class="error" th:errors="${host.signalIO.analogInputs}"></p>
     </div>
     <div class="form-group">
         <label>Digital Inputs
-            <input type="number" min="0" max="20" th:field="${host.controlIO.digitalInputs}" th:value="${host.controlIO.digitalInputs}" class="form-control">
+            <input type="number" min="0" max="20" th:field="${host.signalIO.digitalInputs}" th:value="${host.signalIO.digitalInputs}" class="form-control">
         </label>
-        <p class="error" th:errors="${host.controlIO.digitalInputs}"></p>
+        <p class="error" th:errors="${host.signalIO.digitalInputs}"></p>
     </div>
     <div class="form-group">
         <label>Digital Outputs
-            <input type="number" min="0" max="20" th:field="${host.controlIO.digitalOutputs}" th:value="${host.controlIO.digitalOutputs}" class="form-control">
+            <input type="number" min="0" max="20" th:field="${host.signalIO.digitalOutputs}" th:value="${host.signalIO.digitalOutputs}" class="form-control">
         </label>
-        <p class="error" th:errors="${host.controlIO.digitalOutputs}"></p>
+        <p class="error" th:errors="${host.signalIO.digitalOutputs}"></p>
     </div>
     <div class="form-group">
         <label>Embedded Streams
-            <input type="number" min="0" max="20" th:field="${host.controlIO.embeddedStreams}" th:value="${host.controlIO.embeddedStreams}" class="form-control">
+            <input type="number" min="0" max="20" th:field="${host.signalIO.embeddedStreams}" th:value="${host.signalIO.embeddedStreams}" class="form-control">
         </label>
-        <p class="error" th:errors="${host.controlIO.embeddedStreams}"></p>
+        <p class="error" th:errors="${host.signalIO.embeddedStreams}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="Edit" class="btn btn-secondary">

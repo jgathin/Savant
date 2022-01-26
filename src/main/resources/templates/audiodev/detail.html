@@ -4,7 +4,8 @@
 <body class="container">
 <header th:replace="fragments :: admin-header"></header>
 
-<table class="table-striped">
+<table class="table table-striped">
+    <h2 th:text="${title}"></h2>
     <tr>
         <th>Model</th>
         <td th:text="${audioDevice.model}"></td>
@@ -15,7 +16,7 @@
     </tr>
 </table>
 
-<table th:if="${audioDevice.signalIO}" class="table-striped">
+<table th:if="${audioDevice.signalIO}" class="table table-striped">
     <tr>
         <th>Low-level (RCA) Outputs</th>
         <td th:text="${audioDevice.signalIO.lowOutputs}"></td>
@@ -42,7 +43,7 @@
     </tr>
 </table>
 
-<table th:if="${audioDevice.controlIO}">
+<table th:if="${audioDevice.controlIO}" class="table table-striped">
     <tr>
         <th>Infrared Outputs</th>
         <td th:text="${audioDevice.controlIO.infraredOutputs}"></td>

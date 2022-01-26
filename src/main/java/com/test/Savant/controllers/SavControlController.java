@@ -102,7 +102,7 @@ public class SavControlController {
         Optional<SavControl> result = savControlRepository.findById(savControlId);
         SavControl editSavControl = result.get();
         model.addAttribute("title", "Edit " + editSavControl.getModel());
-        model.addAttribute("savControl  ", editSavControl);
+        model.addAttribute("savControl", editSavControl);
 
         return "control/edit";
     }
@@ -112,8 +112,8 @@ public class SavControlController {
                                                Errors errors, HttpServletRequest request, Model model) {
         User user = getUserFromSession(request.getSession());
 
-        Optional<SavControl> result = savControlRepository.findById(savControlId);
-        SavControl newSavControl = result.get();
+        SavControl newSavControl = savControlRepository.findById(savControl.getId());
+//        SavControl newSavControl = result.get();
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Edit " + newSavControl.getModel());
@@ -122,7 +122,7 @@ public class SavControlController {
 
         savControlRepository.save(savControl);
 
-        return "redirect:detail?savControlId=" + savControl.getId();
+        return "redirect:";
     }
 
 }

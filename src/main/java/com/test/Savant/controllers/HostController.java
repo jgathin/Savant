@@ -117,8 +117,7 @@ public class HostController {
                                        Errors errors, Model model) {
         User user = (User) getUserFromSession(request.getSession());
 
-        Optional<Host> result = hostRepository.findById(hostId);
-        Host newHost = result.get();
+        Host newHost = hostRepository.findById(host.getId());
 
         if (errors.hasErrors()) {
 
@@ -128,6 +127,6 @@ public class HostController {
 
         hostRepository.save(host);
 
-        return "redirect:host";
+        return "redirect:";
     }
 }

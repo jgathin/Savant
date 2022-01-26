@@ -16,6 +16,7 @@
     <tr th:each="host : ${hosts}">
         <td><a th:href="'/host/detail?hostId=' + ${host.id}"  th:text="${host.model}"></a></td>
         <td th:text="${host.description}"></td>
+        <td><a th:href="'/host/edit/' + ${host.id}">Edit</a></td>
     </tr>
 </table>
 
