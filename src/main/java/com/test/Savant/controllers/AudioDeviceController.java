@@ -80,7 +80,7 @@ public class AudioDeviceController {
     }
 
     @GetMapping("detail")
-    public String displaySavantControlDetailPage(@RequestParam Integer audioDeviceId, Model model,
+    public String displayAudioDeviceDetailPage(@RequestParam Integer audioDeviceId, Model model,
                                                  HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
 
@@ -94,6 +94,36 @@ public class AudioDeviceController {
             model.addAttribute("audioDevice", newAudioDevice);
         }
             return "audiodev/detail";
+    }
+
+    @GetMapping("edit/{audioDeviceId}")
+    public String displayEditAudioDevicePage(@PathVariable Integer audioDeviceId, HttpServletRequest request,
+                                             Model model) {
+        User user = getUserFromSession(request.getSession());
+
+        Optional<AudioDevice> result = audioDevRepository.findById(audioDeviceId);
+        AudioDevice editAudioDevice = result.get();
+        model.addAttribute("title", "Edit " + editAudioDevice.getModel());
+        model.addAttribute("audioDevice", editAudioDevice);
+
+        return "audiodev/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditAudioDevicePage(@ModelAttribute @Valid AudioDevice audioDevice, Errors errors,
+                                             HttpServletRequest request, Model model) {
+        User user = getUserFromSession(request.getSession());
+
+        AudioDevice newAudioDevice = audioDevRepository.findById(audioDevice.getId());
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Edit " + newAudioDevice.getModel());
+            return "audiodev/edit";
+        }
+
+        audioDevRepository.save(audioDevice);
+
+        return "redirect:";
     }
 }
 

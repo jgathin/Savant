@@ -1,10 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: admin-header"></header>
+
+<form method="post" th:action="@{/audiodev/edit}">
+    <input type="hidden" th:field="${audioDevice.id}" th:value="${audioDevice.id}"/>
+    <input type="hidden" th:field="${audioDevice.controlIO.id}" th:value="${audioDevice.controlIO.id}" />
+    <input type="hidden" th:field="${audioDevice.signalIO.id}" th:value="${audioDevice.signalIO.id}" />
+
+    <h2>General Information</h2>
+    <div class="form-group">
+        <label>Model
+            <input th:field="${audioDevice.model}" th:value="${audioDevice.model}" class="form-control">
+        </label>
+        <p th:errors="${audioDevice.model}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Model
+            <input th:field="${audioDevice.description}" th:value="${audioDevice.description}" class="form-control">
+        </label>
+        <p th:errors="${audioDevice.description}" class="error"></p>
+    </div>
+
+    <h2>Control Settings</h2>
+    <div class="form-group">
+        <label>Infrared Outputs
+            <input th:field="${audioDevice.controlIO.infraredOutputs}" th:value="${audioDevice.controlIO.infraredOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.controlIO.infraredOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Serial Outputs
+            <input th:field="${audioDevice.controlIO.serialOutputs}" th:value="${audioDevice.controlIO.serialOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.controlIO.serialOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Controllable Relays
+            <input th:field="${audioDevice.controlIO.controllableRelays}" th:value="${audioDevice.controlIO.controllableRelays}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.controlIO.controllableRelays}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Sensor Inputs
+            <input th:field="${audioDevice.controlIO.sensorInputs}" th:value="${audioDevice.controlIO.sensorInputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.controlIO.sensorInputs}" class="error"></p>
+    </div>
+
+    <h2>Output Settings</h2>
+    <div class="form-group">
+        <label>Low Level (RCA) Outputs
+            <input th:field="${audioDevice.signalIO.lowOutputs}" th:value="${audioDevice.signalIO.lowOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.lowOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>High Level (Speaker) Outputs
+            <input th:field="${audioDevice.signalIO.highOutputs}" th:value="${audioDevice.signalIO.highOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.highOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Low Level (RCA) Inputs
+            <input th:field="${audioDevice.signalIO.analogInputs}" th:value="${audioDevice.signalIO.analogInputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.analogInputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Digital Inputs
+            <input th:field="${audioDevice.signalIO.digitalInputs}" th:value="${audioDevice.signalIO.digitalInputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.digitalInputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Digital Outputs
+            <input th:field="${audioDevice.signalIO.digitalOutputs}" th:value="${audioDevice.signalIO.digitalOutputs}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.digitalOutputs}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Embedded Streams
+            <input th:field="${audioDevice.signalIO.embeddedStreams}" th:value="${audioDevice.signalIO.embeddedStreams}" class="form-control" type="number">
+        </label>
+        <p th:errors="${audioDevice.signalIO.embeddedStreams}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Edit" class="btn btn-secondary">
+    </div>
+</form>
 
 </body>
 </html>
