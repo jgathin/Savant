@@ -55,12 +55,12 @@ public class Host extends Device {
     public SignalIO getSignalIO () {return this.signalIO;}
 
     public boolean hostSelection (int v, int t) {
-        if (v < this.videoZones ) {
-            return true;
-        } else  if ( t < this.totalZones) {
+        if (v < this.videoZones && t < this.totalZones ) {
             return true;
         }
-        return false;
+            return false;
+        }
+
     }
 
-}
+

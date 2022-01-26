@@ -24,9 +24,13 @@ public class LayoutFormController {
 
     @Autowired
     LayoutRepository layoutRepository;
+    @Autowired
     HostRepository hostRepository;
+    @Autowired
     SavControlRepository savControlRepository;
+    @Autowired
     AudioDevRepository audioDevRepository;
+    @Autowired
     UserRepository userRepository;
 
     private static final String userSessionKey = "user";
@@ -52,7 +56,7 @@ public class LayoutFormController {
 
     @GetMapping("layout")
     public String displayLayoutForm(Model model, HttpServletRequest request) {
-        User user = getUserFromSession(request.getSession());
+        User user = (User) getUserFromSession(request.getSession());
 
         int videoZonesGet = 0;
         int totalZonesGet = 0;
@@ -66,7 +70,7 @@ public class LayoutFormController {
 
     @PostMapping("layout")
     public String renderLayoutForm(Model model, int videoZonesGet, int totalZonesGet, HttpServletRequest request) {
-        User user = getUserFromSession(request.getSession());
+        User user = (User) getUserFromSession(request.getSession());
 
         videoZones = videoZonesGet;
         totalZones = totalZonesGet;
@@ -89,6 +93,7 @@ public class LayoutFormController {
                hostList.add(host);
            }
        }
+
        model.addAttribute("title", "Layout Result");
        model.addAttribute("hosts", hostList);
 
