@@ -4,6 +4,19 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 
+<table class="table table-striped py-2">
+    <h1 th:text="${title}"></h1>
+    <h2>Available Host</h2>
+    <thead>
+        <tr>
+            <th>Host</th>
+        </tr>
+    </thead>
+    <tr th:each="host : ${hosts}">
+        <td><a th:href="'/host/detail?hostId=' + ${host.id}" th:text="${host.model}"></a></td>
+    </tr>
+</table>
+
 
 </body>
 </html>

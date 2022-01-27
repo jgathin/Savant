@@ -79,8 +79,8 @@ public class AuthenticationController {
             return "reg";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(),
-                registerFormDTO.getEmail()) ;
+        User newUser = new User(registerFormDTO.getUsername().toLowerCase(), registerFormDTO.getPassword(),
+                registerFormDTO.getEmail().toLowerCase()) ;
 
         userRepository.save(newUser);
 
@@ -103,7 +103,7 @@ public class AuthenticationController {
             return "login";
         }
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        User theUser = userRepository.findByUsername(loginFormDTO.getUsername().toLowerCase());
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
@@ -127,7 +127,7 @@ public class AuthenticationController {
                 return "redirect:/admin";
             }
 
-            return "redirect:/index";
+            return "redirect:/layout/layout";
 
 
     }

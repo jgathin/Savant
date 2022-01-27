@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+
 <body class="container">
 <header th:replace="fragments :: header"></header>
 
-<form method="post">
+<h2 th:text="${title}"></h2>
+<form method="post" class="px-2">
     <p>Enter in preliminary info regarding layout.</p>
     <div class="form-group">
         <label>Number of Video Zones
-            <input th:field="${videoZones}" class="form-control" type="number">
+            <input th:field="${layoutFormDTO.videoZones}" class="form-control" type="number">
         </label>
+        <p class="error" th:errors="${layoutFormDTO.videoZones}"></p>
     </div>
     <div class="form-group">
         <label>Number of Total Zones
-            <input th:field="${videoZones}" class="form-control" type="number">
+            <input th:field="${layoutFormDTO.totalZones}" class="form-control" type="number">
         </label>
+        <p class="error" th:errors="${layoutFormDTO.totalZones}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="start" class="btn btn-primary">

@@ -2,18 +2,22 @@ package com.test.Savant.controllers;
 
 import com.test.Savant.User;
 import com.test.Savant.data.*;
+import com.test.Savant.dto.LayoutFormDTO;
 import com.test.Savant.models.AudioDevice;
 import com.test.Savant.models.Host;
 import com.test.Savant.models.SavControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,27 +59,38 @@ public class LayoutFormController {
     public int totalZones;
 
     @GetMapping("layout")
-    public String displayLayoutForm(Model model, HttpServletRequest request) {
+    public String displayLayoutForm(Model model, HttpServletRequest request, LayoutFormDTO layoutFormDTO) {
         User user = (User) getUserFromSession(request.getSession());
 
-        int videoZonesGet = 0;
-        int totalZonesGet = 0;
-
         model.addAttribute("title", "Layout Form");
-        model.addAttribute("videoZones", videoZonesGet);
-        model.addAttribute("totalZones", totalZonesGet);
+        model.addAttribute("layoutFormDTO", new LayoutFormDTO());
 
-        return "layout";
+        return "layout/layout";
     }
 
     @PostMapping("layout")
-    public String renderLayoutForm(Model model, int videoZonesGet, int totalZonesGet, HttpServletRequest request) {
+    public String renderLayoutForm(@ModelAttribute @Valid LayoutFormDTO layoutFormDTO, Errors errors,
+                                   HttpServletRequest request, Model model) {
         User user = (User) getUserFromSession(request.getSession());
 
-        videoZones = videoZonesGet;
-        totalZones = totalZonesGet;
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Layout Form");
+            return "layout/layout";
+        }
 
-        return "layoutcont";
+        if (layoutFormDTO.getTotalZones() == 0) {
+            errors.rejectValue("totalZones", "totalZones.invalid", "Total Zones must be at least 1");
+            model.addAttribute("title", "Layout Form");
+            return "layout/layout";
+        } else if (layoutFormDTO.getVideoZones() > layoutFormDTO.getTotalZones()) {
+            errors.rejectValue("videoZones", "videoZones.invalid", "Video Zone is larger than Total Zones");
+            return "layout/layout";
+        }
+
+        videoZones = layoutFormDTO.getVideoZones();
+        totalZones = layoutFormDTO.getTotalZones();
+
+        return "layout/layoutcont";
 
     }
 
@@ -89,7 +104,7 @@ public class LayoutFormController {
         Iterable<Host> hosts = hostRepository.findAll();
 
        for (Host host : hosts) {
-           if (host.hostSelection(host.getVideoZones(),host.getTotalZones())) {
+           if (host.hostSelection(videoZones,totalZones)) {
                hostList.add(host);
            }
        }
@@ -97,7 +112,7 @@ public class LayoutFormController {
        model.addAttribute("title", "Layout Result");
        model.addAttribute("hosts", hostList);
 
-       return "layoutcont";
+       return "layout/layoutcont";
     }
 
 }
