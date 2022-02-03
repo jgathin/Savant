@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class User extends AbstractEntity {
 
+    /* Universal user class which should be imported with the minor changes that pertain to each individual
+    projects */
+
     @NotNull
     private String username;
 
