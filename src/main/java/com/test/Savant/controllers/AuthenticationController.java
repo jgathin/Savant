@@ -127,7 +127,7 @@ public class AuthenticationController {
                 return "redirect:/admin";
             }
 
-            return "redirect:/index";
+            return "redirect:/layout/layout";
 
 
     }

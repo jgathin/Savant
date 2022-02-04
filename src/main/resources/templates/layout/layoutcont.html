@@ -4,6 +4,21 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 
+<table class="table table-striped py-2">
+    <h2 th:text="${title}"></h2>
+    <p th:text="'Available hosts with ' + ${videoZones} + ' video zone(s) and ' + ${totalZones} + ' total zone(s).'"></p>
+    <thead>
+    <tr>
+        <th>Model</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr th:each="host : ${hosts}">
+        <td><a th:href="'/host/detail?hostId=' + ${host.id}"  th:text="${host.model}"></a></td>
+        <td th:text="${host.description}"></td>
+    </tr>
+    <p><a href="/layout/layout">Back To Layout Tool</a></p>
+</table>
 
 </body>
 </html>

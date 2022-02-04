@@ -4,17 +4,20 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 
+<h2 th:text="${title}"></h2>
 <form method="post">
     <p>Enter in preliminary info regarding layout.</p>
     <div class="form-group">
         <label>Number of Video Zones
-            <input th:field="${videoZones}" class="form-control" type="number">
+            <input th:field="${layoutFormDTO.videoZones}" class="form-control" type="number" min="1">
         </label>
+        <p th:errors="${layoutFormDTO.videoZones}"></p>
     </div>
     <div class="form-group">
         <label>Number of Total Zones
-            <input th:field="${videoZones}" class="form-control" type="number">
+            <input th:field="${layoutFormDTO.totalZones}" class="form-control" type="number">
         </label>
+        <p th:errors="${layoutFormDTO.totalZones}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="start" class="btn btn-primary">

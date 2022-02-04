@@ -204,7 +204,7 @@ public class Host extends Device {
     }
 
     public boolean hostSelection (int v, int t) {
-        if (v < this.videoZones && t < this.totalZones ) {
+        if (v <= this.videoZones && t <= this.totalZones ) {
             return true;
         }
             return false;
