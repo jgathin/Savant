@@ -47,6 +47,7 @@ public class SavControlController {
     public String displaySavControlIndex(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
 
+        model.addAttribute("user", user);
         model.addAttribute("title", "Savant Controllers");
         model.addAttribute("controllers", savControlRepository.findAll());
 
@@ -57,6 +58,7 @@ public class SavControlController {
     public String displayAddSavControlPage(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
 
+        model.addAttribute("user", user);
         model.addAttribute("title", "Add Savant Controller");
         model.addAttribute("savControl", new SavControl());
 
@@ -88,6 +90,7 @@ public class SavControlController {
             model.addAttribute("title", "Invalid Savant Controller ID " + savControlId);
         } else {
             SavControl newSavControl = result.get();
+            model.addAttribute("user", user);
             model.addAttribute("title", newSavControl.getModel() + " Details");
             model.addAttribute("controller", newSavControl);
         }
@@ -101,6 +104,7 @@ public class SavControlController {
 
         Optional<SavControl> result = savControlRepository.findById(savControlId);
         SavControl editSavControl = result.get();
+        model.addAttribute("user", user);
         model.addAttribute("title", "Edit " + editSavControl.getModel());
         model.addAttribute("savControl", editSavControl);
 

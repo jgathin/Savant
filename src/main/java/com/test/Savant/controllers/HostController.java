@@ -106,6 +106,7 @@ public class HostController {
 
         Optional<Host> result = hostRepository.findById(hostId);
         Host editHost = result.get();
+        model.addAttribute("user", user);
         model.addAttribute("title", "Edit " + editHost.getModel());
         model.addAttribute("host", editHost);
 

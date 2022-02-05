@@ -62,6 +62,7 @@ public class LayoutFormController {
     public String displayLayoutForm(Model model, HttpServletRequest request) {
         User user = (User) getUserFromSession(request.getSession());
 
+        model.addAttribute("user", user);
         model.addAttribute("title", "Layout Form");
         model.addAttribute(new LayoutFormDTO());
 
@@ -108,6 +109,7 @@ public class LayoutFormController {
            }
        }
 
+       model.addAttribute("user", user);
        model.addAttribute("title", "Layout Result");
        model.addAttribute("hosts", hostList);
        model.addAttribute("videoZones", videoZones);

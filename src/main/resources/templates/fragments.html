@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<div th:fragment="header">
-    <h1><img src="https://www.adamreed.net/wp-content/uploads/2020/09/MagnoliaBB_Logo.jpg" /></h1>
-    <h1><img src="https://www.savant.com/sites/all/themes/savant_main/assets/img/Savant-Logo.svg" width="500"/></h1>
+<div th:fragment="header" class="navbar navbar-dark bd-navbar">
+    <h1><span><img src="https://www.adamreed.net/wp-content/uploads/2020/09/MagnoliaBB_Logo.jpg" width="300"/></span>
+    <span><img src="https://www.savant.com/sites/all/themes/savant_main/assets/img/Savant-Logo.svg" width="300"/></span></h1>
     <ul class="nav" style="float:right;">
         <li class="nav-item"><a class="nav-link header-link" href="/logout">Log out</a> </li>
     </ul>
@@ -26,7 +26,7 @@
     <ul class="nav" style="float:right;">
         <li class="nav-item"><a class="nav-link header-link" href="/logout">Log out</a> </li>
     </ul>
-    <ul class="nav">
+    <ul th:if="${user.username == 'jgathin'}" class="nav">
         <li class="nav-item"><a class="nav-link header-link" href="/host">Hosts</a></li>
         <li class="nav-item"><a class="nav-link header-link" href="/host/add">Add Host</a></li>
 <!--        <li class="nav-item"><a class="nav-link header-link" href="/host/edit">Edit Hosts</a></li>-->
@@ -36,6 +36,9 @@
         <li class="nav-item"><a class="nav-link header-link" href="/audiodev">Audio Devices</a></li>
         <li class="nav-item"><a class="nav-link header-link" href="/audiodev/add">Add Audio Device</a></li>
 <!--        <li class="nav-item"><a class="nav-link header-link" href="/audiodev/edit">Edit Audio Device</a></li>-->
+    </ul>
+    <ul th:unless="${user.username == 'jgathin'}" class="nav">
+        <li class="nav-item"><a class="nav-link header-link" href="/layout/layoutcont">Back To Layout</a></li>
     </ul>
 </div>
 

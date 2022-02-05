@@ -47,6 +47,7 @@ public class AudioDeviceController {
     public String displayAudioDevIndex(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
 
+        model.addAttribute("user", user);
         model.addAttribute("title", "Savant Audio Devices");
         model.addAttribute("audioDevices", audioDevRepository.findAll());
 
@@ -57,6 +58,7 @@ public class AudioDeviceController {
     public String displayAddAudioDevPage(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
 
+        model.addAttribute("user", user);
         model.addAttribute("title", "Add Savant Audio Device");
         model.addAttribute("audioDevice", new AudioDevice());
 
@@ -90,6 +92,7 @@ public class AudioDeviceController {
             model.addAttribute("title", "Invalid Savant Audio Device ID " + audioDeviceId);
         } else {
             AudioDevice newAudioDevice = result.get();
+            model.addAttribute("user", user);
             model.addAttribute("title", newAudioDevice.getModel() + " Details");
             model.addAttribute("audioDevice", newAudioDevice);
         }
@@ -103,6 +106,7 @@ public class AudioDeviceController {
 
         Optional<AudioDevice> result = audioDevRepository.findById(audioDeviceId);
         AudioDevice editAudioDevice = result.get();
+        model.addAttribute("user", user);
         model.addAttribute("title", "Edit " + editAudioDevice.getModel());
         model.addAttribute("audioDevice", editAudioDevice);
 
