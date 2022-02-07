@@ -8,6 +8,7 @@ import com.test.Savant.models.AudioDevice;
 import com.test.Savant.models.Host;
 import com.test.Savant.models.SavControl;
 import com.test.Savant.models.zone.Zone;
+import com.test.Savant.models.zone.ZoneType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -151,6 +152,7 @@ public class LayoutFormController {
         model.addAttribute("title", " New Project");
         model.addAttribute("host", hostList);
         model.addAttribute("zones", zoneFormDTO.getZones());
+        model.addAttribute("types", ZoneType.values());
 
 
         return "layout/project";

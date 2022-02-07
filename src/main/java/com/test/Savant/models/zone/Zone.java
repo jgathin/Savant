@@ -1,9 +1,11 @@
 package com.test.Savant.models.zone;
 
+import com.test.Savant.AbstractEntity;
+
 import javax.persistence.Entity;
 
 @Entity
-public class Zone {
+public class Zone extends AbstractEntity {
 
     private String name;
 

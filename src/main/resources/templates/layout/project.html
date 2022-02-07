@@ -25,12 +25,15 @@
         <select th:field="${zone.zoneType}">
             <option th:each="type : ${types}"
                     th:value="${type}"
-                    th:text="${type.partType}">
+                    th:text="${type.zoneType}">
             </option>
         </select>
     </label>
         </div>
     </th:block>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </div>
 </form>
 </body>
 </html>

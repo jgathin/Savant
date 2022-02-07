@@ -26,18 +26,18 @@ public class Project extends AbstractEntity {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
-    private User designer;
+    @JoinColumn(name="user_id")
+    private User user;
 
     private String client;
 
     public Project () {}
 
-    public Project(@NotBlank String host, @NotEmpty List<Zone> zones, String description, User designer, String client) {
+    public Project(@NotBlank String host, @NotEmpty List<Zone> zones, String description, User user, String client) {
         this.host = host;
         this.zones = zones;
         this.description = description;
-        this.designer = designer;
+        this.user = user;
         this.client = client;
     }
 
@@ -65,12 +65,12 @@ public class Project extends AbstractEntity {
         this.description = description;
     }
 
-    public User getDesigner() {
-        return designer;
+    public User getUser() {
+        return user;
     }
 
-    public void setDesigner(User designer) {
-        this.designer = designer;
+    public void setUser(User designer) {
+        this.user = designer;
     }
 
     public String getClient() {

@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,7 +24,7 @@ public class User extends AbstractEntity {
     @NotNull String email;
 
     @OneToMany(mappedBy = "user")
-    private Set<Project> projects;
+    private List<Project> projects;
 
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -42,4 +43,12 @@ public class User extends AbstractEntity {
     public boolean isMatchingPassword(String password) { return encoder.matches(password, pwHash);}
 
     public String getEmail() { return email;}
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
 }
