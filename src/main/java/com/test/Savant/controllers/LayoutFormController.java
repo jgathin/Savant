@@ -3,9 +3,11 @@ package com.test.Savant.controllers;
 import com.test.Savant.User;
 import com.test.Savant.data.*;
 import com.test.Savant.dto.LayoutFormDTO;
+import com.test.Savant.dto.ZoneFormDTO;
 import com.test.Savant.models.AudioDevice;
 import com.test.Savant.models.Host;
 import com.test.Savant.models.SavControl;
+import com.test.Savant.models.zone.Zone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -116,6 +118,42 @@ public class LayoutFormController {
        model.addAttribute("totalZones", totalZones);
 
        return "layout/layoutcont";
+    }
+
+    @GetMapping("project")
+    public String displayProjectForm(Model model, HttpServletRequest request) {
+        User user = getUserFromSession(request.getSession());
+
+        ArrayList<Host> hostList = new ArrayList<>();
+        Iterable<Host> hosts = hostRepository.findAll();
+
+        for (Host host: hosts) {
+            if (host.hostSelection(videoZones, totalZones)) {
+                hostList.add(host);
+            }
+        }
+
+        ZoneFormDTO zoneFormDTO = new ZoneFormDTO();
+
+        Zone [] generatedZones =  zoneFormDTO.zoneGenerator(totalZones);
+
+        List<Zone> zones = new ArrayList<>();
+
+        for (Zone zone : generatedZones) {
+            zones.add(zone);
+        }
+
+        zoneFormDTO.setZones(zones);
+
+
+
+        model.addAttribute("user", user);
+        model.addAttribute("title", " New Project");
+        model.addAttribute("host", hostList);
+        model.addAttribute("zones", zoneFormDTO.getZones());
+
+
+        return "layout/project";
     }
 
 }

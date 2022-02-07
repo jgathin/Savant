@@ -1,4 +1,4 @@
-package com.test.Savant.models;
+package com.test.Savant.models.layout;
 
 import com.test.Savant.AbstractEntity;
 
