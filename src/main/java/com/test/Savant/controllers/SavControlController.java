@@ -1,6 +1,6 @@
 package com.test.Savant.controllers;
 
-import com.test.Savant.User;
+import com.test.Savant.models.User;
 import com.test.Savant.data.SavControlRepository;
 import com.test.Savant.data.UserRepository;
 import com.test.Savant.models.SavControl;

@@ -1,5 +1,6 @@
-package com.test.Savant;
+package com.test.Savant.models;
 
+import com.test.Savant.AbstractEntity;
 import com.test.Savant.models.layout.Project;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

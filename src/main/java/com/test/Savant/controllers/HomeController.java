@@ -1,6 +1,6 @@
 package com.test.Savant.controllers;
 
-import com.test.Savant.User;
+import com.test.Savant.models.User;
 import com.test.Savant.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

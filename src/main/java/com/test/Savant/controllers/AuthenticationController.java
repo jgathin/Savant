@@ -1,11 +1,10 @@
 package com.test.Savant.controllers;
 
-import com.test.Savant.User;
+import com.test.Savant.models.User;
 import com.test.Savant.data.UserRepository;
 import com.test.Savant.dto.LoginFormDTO;
 import com.test.Savant.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;

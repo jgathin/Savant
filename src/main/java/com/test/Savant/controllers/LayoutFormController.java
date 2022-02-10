@@ -1,12 +1,14 @@
 package com.test.Savant.controllers;
 
-import com.test.Savant.User;
+import com.test.Savant.dto.ProjectFormDTO;
+import com.test.Savant.models.User;
 import com.test.Savant.data.*;
 import com.test.Savant.dto.LayoutFormDTO;
 import com.test.Savant.dto.ZoneFormDTO;
 import com.test.Savant.models.AudioDevice;
 import com.test.Savant.models.Host;
 import com.test.Savant.models.SavControl;
+import com.test.Savant.models.layout.Project;
 import com.test.Savant.models.zone.Zone;
 import com.test.Savant.models.zone.ZoneType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,6 +40,10 @@ public class LayoutFormController {
     AudioDevRepository audioDevRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ZoneRepository zoneRepository;
+    @Autowired
+    ProjectRepository projectRepository;
 
     private static final String userSessionKey = "user";
 
@@ -60,6 +65,18 @@ public class LayoutFormController {
 
     public int videoZones;
     public int totalZones;
+    public Zone[] zoneGenerator(int totalZones) {
+        Zone [] myZones = new Zone[totalZones];
+
+        for (int i = 0; i < totalZones; i++) {
+            myZones[i] = new Zone();
+        }
+
+        return myZones;
+    }
+    Zone [] generatedZones =  zoneGenerator(totalZones);
+
+    public int count = 0;
 
     @GetMapping("layout")
     public String displayLayoutForm(Model model, HttpServletRequest request) {
@@ -134,28 +151,35 @@ public class LayoutFormController {
             }
         }
 
-        ZoneFormDTO zoneFormDTO = new ZoneFormDTO();
-
-        Zone [] generatedZones =  zoneFormDTO.zoneGenerator(totalZones);
-
-        List<Zone> zones = new ArrayList<>();
-
-        for (Zone zone : generatedZones) {
-            zones.add(zone);
-        }
-
-        zoneFormDTO.setZones(zones);
-
-
-
         model.addAttribute("user", user);
         model.addAttribute("title", " New Project");
         model.addAttribute("host", hostList);
-        model.addAttribute("zones", zoneFormDTO.getZones());
         model.addAttribute("types", ZoneType.values());
 
 
         return "layout/project";
+    }
+
+    @PostMapping("project")
+    public String renderProjectForm(@ModelAttribute @Valid ZoneFormDTO zoneFormDTO, Errors errors,
+                                    HttpServletRequest request, Model model, ProjectFormDTO projectFormDTO) {
+        User user = getUserFromSession(request.getSession());
+
+        count = generatedZones.length + 1;
+
+            if (generatedZones.length < count) {
+
+                Project newProject = new Project(projectFormDTO.getHost(),projectFormDTO.getZones(),
+                        projectFormDTO.getDescription(), user, projectFormDTO.getClient());
+
+                projectRepository.save(newProject);
+
+                return "layout/project";
+            }
+
+            count = 0;
+            return "layout/project";
+        }
     }
 
 }
