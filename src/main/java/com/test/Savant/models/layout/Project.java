@@ -8,6 +8,7 @@ import com.test.Savant.models.zone.Zone;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -19,7 +20,11 @@ public class Project extends AbstractEntity {
     @NotBlank
     private String host;
 
-    @NotEmpty
+    @NotNull
+    @NotBlank
+    private String name;
+
+    @OneToMany(mappedBy = "project")
     private List<Zone> zones;
 
 
@@ -33,7 +38,7 @@ public class Project extends AbstractEntity {
 
     public Project () {}
 
-    public Project(@NotBlank String host, @NotEmpty List<Zone> zones, String description, User user, String client) {
+    public Project(String host, List<Zone> zones, String description, User user, String client) {
         this.host = host;
         this.zones = zones;
         this.description = description;
@@ -79,5 +84,13 @@ public class Project extends AbstractEntity {
 
     public void setClient(String client) {
         this.client = client;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

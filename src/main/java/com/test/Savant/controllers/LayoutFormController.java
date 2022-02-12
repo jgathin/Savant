@@ -152,7 +152,7 @@ public class LayoutFormController {
         }
 
         model.addAttribute("user", user);
-        model.addAttribute("title", " New Project");
+        model.addAttribute("title", "New Project");
         model.addAttribute("host", hostList);
         model.addAttribute("types", ZoneType.values());
 
@@ -182,4 +182,4 @@ public class LayoutFormController {
         }
     }
 
-}
+

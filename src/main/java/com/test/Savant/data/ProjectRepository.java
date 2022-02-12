@@ -4,5 +4,5 @@ import com.test.Savant.models.layout.Project;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ProjectRepository extends CrudRepository<Project, Integer> {
-    Project findByProjectId (int projectId);
+    Project findByName (int name);
 }

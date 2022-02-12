@@ -2,6 +2,7 @@ package com.test.Savant;
 
 import com.test.Savant.controllers.AuthenticationController;
 import com.test.Savant.data.UserRepository;
+import com.test.Savant.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
