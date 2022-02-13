@@ -6,14 +6,18 @@ import com.test.Savant.models.layout.Project;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Zone extends AbstractEntity {
 
+    @NotBlank
     private String name;
 
     private String description;
 
+    @NotBlank
     private ZoneType zoneType;
 
     @ManyToOne

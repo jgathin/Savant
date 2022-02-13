@@ -15,15 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -138,8 +136,8 @@ public class LayoutFormController {
        return "layout/layoutcont";
     }
 
-    @GetMapping("project")
-    public String displayProjectForm(Model model, HttpServletRequest request) {
+    @GetMapping("addproject")
+    public String displayAddProjectForm(Model model, HttpServletRequest request) {
         User user = getUserFromSession(request.getSession());
 
         ArrayList<Host> hostList = new ArrayList<>();
@@ -153,33 +151,102 @@ public class LayoutFormController {
 
         model.addAttribute("user", user);
         model.addAttribute("title", "New Project");
+        model.addAttribute(new Project());
         model.addAttribute("host", hostList);
-        model.addAttribute("types", ZoneType.values());
+//        model.addAttribute("types", ZoneType.values());
 
+
+        return "layout/addproject";
+    }
+
+    @PostMapping("addproject")
+    public String renderAddProjectForm(@ModelAttribute @Valid Project newProject, Errors errors,
+                                    HttpServletRequest request, Model model) {
+        User user = getUserFromSession(request.getSession());
+
+        if (errors.hasErrors()) {
+            model.addAttribute("user", user);
+            model.addAttribute("title", "New Project");
+            return "layout/addproject";
+        }
+
+        projectRepository.save(newProject);
+
+            return "layout/project";
+        }
+
+
+    @GetMapping("project")
+    public String displayProjectsPage(Model model, HttpServletRequest request) {
+        User user = getUserFromSession(request.getSession());
+
+        model.addAttribute("user", user);
+        model.addAttribute("title", "Projects");
+        model.addAttribute("projects", projectRepository.findAll());
 
         return "layout/project";
     }
 
-    @PostMapping("project")
-    public String renderProjectForm(@ModelAttribute @Valid ZoneFormDTO zoneFormDTO, Errors errors,
-                                    HttpServletRequest request, Model model, ProjectFormDTO projectFormDTO) {
-        User user = getUserFromSession(request.getSession());
+    @GetMapping("addzone/{projectId}")
+    public String displayAddZonePage(Model model, HttpServletRequest request,
+                                     @PathVariable Integer projectId) {
+        User user = (User) getUserFromSession(request.getSession());
 
-        count = generatedZones.length + 1;
+        Optional<Project> result = projectRepository.findById(projectId);
+        Project editProject = result.get();
+        model.addAttribute("user", user);
+        model.addAttribute("title", "Add zone to " + editProject.getName());
+        model.addAttribute("project", editProject);
+        model.addAttribute(new Zone());
 
-            if (generatedZones.length < count) {
-
-                Project newProject = new Project(projectFormDTO.getHost(),projectFormDTO.getZones(),
-                        projectFormDTO.getDescription(), user, projectFormDTO.getClient());
-
-                projectRepository.save(newProject);
-
-                return "layout/project";
-            }
-
-            count = 0;
-            return "layout/project";
-        }
+        return "layout/addzone";
     }
+
+    @PostMapping("addzone")
+    public String processAddZonePage(@ModelAttribute @Valid Zone zone,
+                                     Project project, HttpServletRequest request,
+                                     Errors errors, Model model) {
+        User user = (User) getUserFromSession(request.getSession());
+
+        Optional<Project> result = projectRepository.findById(project.getId());
+        Project editProject = result.get();
+
+        if (errors.hasErrors()) {
+
+            model.addAttribute("title", "Add zone to " + editProject.getName());
+            return "layout/addzone";
+        }
+
+        List<Zone> zones = editProject.getZones();
+        zones.add(zone);
+        projectRepository.save(editProject);
+
+        return "layout/projectdetail/" + editProject.getId();
+    }
+
+    @GetMapping("projectdetail/{projectId}")
+    public String displayProjectDetailPage(Model model, @PathVariable Integer projectId,
+                                           HttpServletRequest request) {
+        User user = (User) getUserFromSession(request.getSession());
+
+        Optional<Project> result = projectRepository.findById(projectId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("user", user);
+            model.addAttribute("title", "Invalid Project ID: " + projectId);
+        } else {
+            Project project = result.get();
+            model.addAttribute("user", user);
+            model.addAttribute("title", project.getName() + " Details");
+            model.addAttribute("project", project);
+        }
+
+        return "layout/projectdetail";
+    }
+
+
+
+}
+
 
 
