@@ -7,7 +7,7 @@
 <form method="post" th:action="@{/host/edit}">
     <input type="hidden" th:field="${host.id}" th:value="${host.id}" name="hostId" />
     <input type="hidden" th:field="${host.controlIO.id}" th:value="${host.controlIO.id}"/>
-    <input type="hidden" th:field="${host.signalIO.id}" th:value="${host.signalIO   .id}" />
+    <input type="hidden" th:field="${host.signalIO.id}" th:value="${host.signalIO.id}" />
     <div class="form-group">
         <label>Model
             <input th:field="${host.model}" th:value="${host.model}" class="form-control">

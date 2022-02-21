@@ -23,6 +23,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import com.test.Savant.dto.ProjectFormDTO;
 
 @Controller
 @RequestMapping("layout")
@@ -177,26 +178,29 @@ public class LayoutFormController {
 
 
     @GetMapping("project")
-    public String displayProjectsPage(Model model, HttpServletRequest request) {
+    public String displayProjectsPage(Model model, HttpServletRequest request, ProjectFormDTO projectFormDTO) {
         User user = getUserFromSession(request.getSession());
+
+        List<Project> projects = projectFormDTO.pullProjectsToLocalMemory(user);
 
         model.addAttribute("user", user);
         model.addAttribute("title", "Projects");
-        model.addAttribute("projects", projectRepository.findAll());
+        model.addAttribute("projects", projects);
 
         return "layout/project";
     }
 
     @GetMapping("addzone/{projectId}")
     public String displayAddZonePage(Model model, HttpServletRequest request,
-                                     @PathVariable Integer projectId) {
+                                     @PathVariable Integer projectId, ProjectFormDTO projectFormDTO) {
         User user = (User) getUserFromSession(request.getSession());
+        List<Project> projects = projectFormDTO.pullProjectsToLocalMemory(user);
 
-        Optional<Project> result = projectRepository.findById(projectId);
-        Project editProject = result.get();
+        Project project = projectFormDTO.findProjectById(projectId, projects);
+//        Project editProject = result.get();
         model.addAttribute("user", user);
-        model.addAttribute("title", "Add zone to " + editProject.getName());
-        model.addAttribute("project", editProject);
+        model.addAttribute("title", "Add zone to " + project.getName());
+        model.addAttribute("project", project);
         model.addAttribute(new Zone());
 
         return "layout/addzone";
@@ -224,8 +228,8 @@ public class LayoutFormController {
         return "layout/projectdetail/" + editProject.getId();
     }
 
-    @GetMapping("projectdetail/{projectId}")
-    public String displayProjectDetailPage(Model model, @PathVariable Integer projectId,
+    @GetMapping("projectdetail")
+    public String displayProjectDetailPage(Model model, @RequestParam Integer projectId,
                                            HttpServletRequest request) {
         User user = (User) getUserFromSession(request.getSession());
 

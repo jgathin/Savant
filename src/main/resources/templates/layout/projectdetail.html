@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: admin-header"></header>
+
+<h2 th:text="${title}"></h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <td th:text="${project.name}"></td>
+    </tr>
+    <tr>
+        <th>Client</th>
+        <td th:text="${project.client}"></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${project.description}"></td>
+    </tr>
+    <tr>
+        <th>Designer/Consultant</th>
+        <td th:text="${project.user.username}"></td>
+    </tr>
+    <tr>
+        <th>Host in Use</th>
+        <td th:text="${project.host}"></td>
+    </tr>
+</table>
+<table class="table">
+    <h2>Project Zones</h2>
+    <p><a th:href="'/layout/addzone/' + ${project.id}">Add Zone</a></p>
+    <thead>
+    <tr>
+        <th>Zone Name</th>
+        <th>Zone Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tr th:each="zones : ${project.zones}">
+        <td th:text="${zone.name}"></td>
+        <td th:text="${zone.zoneType.zoneType"></td>\
+        <td th:text="${zone.description}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
